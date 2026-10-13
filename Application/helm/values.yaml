@@ -2,7 +2,7 @@ ReplicaNumber: 3
 
 containers:
   containerPort: 8080
-  image: 'quay.io/veredlefkowitz26-isra/helloimg'
+  image: 'quay.io/veredlefkowitz26-isra/helloimg' 
   tag: 'chart_v1'
 
 service:
