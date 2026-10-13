@@ -1,0 +1,10 @@
+ReplicaNumber: 3
+
+containers:
+  containerPort: 8080
+  image: 'quay.io/veredlefkowitz26-isra/helloimg:v2'
+  tag: 'base'
+
+service:
+  servicePort: 8080
+
