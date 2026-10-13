@@ -10,3 +10,4 @@ spec:
   port:
     targetPort: {{ .Values.service.servicePort }}
   wildcardPolicy: None
+  
