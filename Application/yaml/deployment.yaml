@@ -4,7 +4,7 @@ metadata:
 # Set your lab user name
   name: veredlefkowitz26-isra-hello-world
 spec:
-  replicas: 3
+  replicas: 1
   selector:
     matchLabels:
 # Set your lab user name
