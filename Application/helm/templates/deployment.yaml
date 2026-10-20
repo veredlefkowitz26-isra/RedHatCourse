@@ -18,6 +18,9 @@ spec:
             name: '{{ .Chart.Name }}-html'
             defaultMode: 420  
       containers:
+        env:
+        - name: PORT
+          value: {{ .Values.containers.containerPort | quote }}
         - resources: {}
           terminationMessagePath: /dev/termination-log
           name: {{ .Chart.Name }}
@@ -29,7 +32,27 @@ spec:
           image: {{ .Values.containers.image }}:{{ .Values.containers.tag }}   
           volumeMounts:
           - name: index-html
-            mountPath: /tmp/html # this will mount the html.index file to it application location        
+            mountPath: /tmp/html # this will mount the html.index file to it application location
+           readinessProbe:
+                    httpGet:
+                      path: /health/readiness # this check the application url path
+                      port: {{ .Values.containers.containerPort  }} # In which port the Application is listening
+                      scheme: HTTP
+                    initialDelaySeconds: 1 # the time is waiting before testing the application path
+                    timeoutSeconds: 1 # the time for timeout
+                    periodSeconds: 10 # the amount of time to wait between checks
+                    successThreshold: 1 # count to declare successful 
+                    failureThreshold: 3 # count to declare failure 
+            livenessProbe:
+                      httpGet:
+                        path: /health/liveliness
+                        port: {{ .Values.containers.containerPort }}
+                        scheme: HTTP
+                      initialDelaySeconds: 1
+                      timeoutSeconds: 1
+                      periodSeconds: 10
+                      successThreshold: 1
+                      failureThreshold: 3        
       restartPolicy: Always
       terminationGracePeriodSeconds: 30
   strategy:
