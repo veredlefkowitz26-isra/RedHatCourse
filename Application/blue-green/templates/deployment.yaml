@@ -18,7 +18,7 @@ spec:
        app: {{ .name }}
    spec:
      containers:
-     - image: quay.io/veredlefkowitz26-isra/helloimg
+     - image: quay.io/rhdevelopers/bgd:1.0.0
        name: {{ .name }}
        env:
        - name: COLOR
@@ -32,5 +32,5 @@ spec:
      securityContext:
        runAsNonRoot: true
        seccompProfile:
-         type: 
-         
+         type: RuntimeDefault
+{{- end }}
