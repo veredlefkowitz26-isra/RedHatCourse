@@ -1,6 +1,7 @@
+{{- range .Values.deployment }}
 
-apiVersion: apps/v1
 kind: Deployment
+apiVersion: apps/v1
 metadata:
  labels:
    app: {{ .name }}
@@ -18,7 +19,7 @@ spec:
    spec:
      containers:
      - image: quay.io/rhdevelopers/bgd:1.0.0
-       name: {{ .name }}
+       name: {{ .name }}:'v1'
        env:
        - name: COLOR
          value: {{ .color }}
