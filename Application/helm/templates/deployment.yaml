@@ -17,10 +17,7 @@ spec:
           configMap:
             name: '{{ .Chart.Name }}-html'
             defaultMode: 420  
-      containers:
-        env:
-        - name: PORT
-          value: {{ .Values.containers.containerPort | quote }}
+      containers:       
         - resources: {}
           terminationMessagePath: /dev/termination-log
           name: {{ .Chart.Name }}
